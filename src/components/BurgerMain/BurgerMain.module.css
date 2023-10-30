@@ -1,0 +1,11 @@
+.main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    width: 100%;
+    max-width: 1240px;
+
+    margin-right: auto;
+    margin-left: auto;
+}
