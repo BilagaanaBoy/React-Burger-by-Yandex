@@ -3,13 +3,14 @@ import clsx from 'clsx';
 
 import styles from './IngredientDetails.module.css';
 import { ingredientsType } from '../../utils/propTypesConst';
+import { BurgerIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 
 function IngredientDetails(props) {
 
   return (
     <div className={styles.main}>
       <section className={styles.textColor}>
-        <img src={props.item.image_large} alt="No image" className="ml-5 mr-5" />
+        <img src={props.item.image_large} alt={props.item.name} className="ml-5 mr-5" />
         <p className={'text text_type_main-medium mt-4'}>
           {props.item.name}
         </p>

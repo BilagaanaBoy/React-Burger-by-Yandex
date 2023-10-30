@@ -46,7 +46,7 @@ function App() {
 
     return (
       <div>
-        <AppHeader className={styles.header}/>
+        <AppHeader />
         <BurgerMain data={data} setModalOpen={setModalOpen}/>
         {modalStatus && 
           (<Modal header={modalHeader} setModaClose={setModaClose}>

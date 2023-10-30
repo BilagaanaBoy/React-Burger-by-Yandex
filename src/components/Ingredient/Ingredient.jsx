@@ -19,7 +19,7 @@ function Ingredient(props) {
 
   return (
     <div className={styles.content} onClick={getIngredientModal}>
-      <img src={props.item.image} alt="No image" className={styles.image} />
+      <img src={props.item.image} alt={props.item.name} className={styles.image} />
       <div className={clsx(styles.flex, ' mt-1 ')}>
         <p className="text text_type_digits-default mr-2 ">{props.item.price}</p>
         <CurrencyIcon type="primary" />

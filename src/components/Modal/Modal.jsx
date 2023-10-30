@@ -10,20 +10,20 @@ import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 const portalRoot = document.getElementById('portal-modals');
 
+
 function Modal(props) {
-
-    const handlerEsc = (e) => {
-        if (e.key === 'Escape') {
-            e.preventDefault();
-            closeModal();
-        }
-    }
-
     const closeModal = () => {
         props.setModaClose();
     }
 
     React.useEffect(() => {
+        const handlerEsc = (e) => {
+            if (e.key === 'Escape') {
+                e.preventDefault();
+                closeModal();
+            }
+        }
+
         document.addEventListener('keydown', handlerEsc);
         return () => {
             document.removeEventListener('keydown', handlerEsc);
@@ -31,7 +31,7 @@ function Modal(props) {
     }, []);
 
     return ReactDOM.createPortal(
-        <div>
+        <>
             <ModalOverlay onClick={closeModal} />
             <div className={styles.modal}>
                 <div className={clsx(styles.header,' mt-10 mr-10 ml-10')}>
@@ -44,7 +44,7 @@ function Modal(props) {
                 </div>
                 <div>{props.children}</div>
             </div>
-        </div>,
+        </>,
         portalRoot
     );
 }
