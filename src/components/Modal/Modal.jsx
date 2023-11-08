@@ -10,7 +10,6 @@ import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 const portalRoot = document.getElementById('portal-modals');
 
-
 function Modal(props) {
     const closeModal = () => {
         props.setModaClose();

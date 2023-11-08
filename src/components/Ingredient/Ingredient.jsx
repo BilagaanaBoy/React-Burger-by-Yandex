@@ -1,6 +1,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { useDrag } from 'react-dnd';
 import clsx from 'clsx';
 
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -8,31 +10,41 @@ import styles from './Ingredient.module.css';
 
 import IngredientDetails from '../IngredientDetails/IngredientDetails';
 import { ingredientsType } from '../../utils/propTypesConst';
+import { LOAD_DETAILS } from '../../services/actions/index';
 
 function Ingredient(props) {
+  const dispatch = useDispatch();
 
   const getIngredientModal = () => {
-    const modalContent = <IngredientDetails item={props.item} />;
+    dispatch({
+      type: LOAD_DETAILS,
+      item: props.item,
+    });
+    const modalContent = <IngredientDetails />;
     const modalHeader = 'Детали ингредиента';
     props.setModalOpen(modalContent, modalHeader);
   }
 
+  const [, dragRef] = useDrag({
+    type: 'ingredient',
+    item:  props.item,
+  });
+
   return (
-    <div className={styles.content} onClick={getIngredientModal}>
-      <img src={props.item.image} alt={props.item.name} className={styles.image} />
+    <div ref={dragRef} className={styles.content} onClick={getIngredientModal}>
+      <img src={props.item.image} alt="No image" className={styles.image} />
       <div className={clsx(styles.flex, ' mt-1 ')}>
         <p className="text text_type_digits-default mr-2 ">{props.item.price}</p>
         <CurrencyIcon type="primary" />
       </div>
       <p className="text text_type_main-default mt-1">{props.item.name}</p>
       <div >
-        <Counter count={0} size="default" />
+      {props.item.count > 0 && <Counter count={ props.item.count} size="default" />}
       </div>
     </div>
   );
 
 }
-
 
 export default Ingredient;
 

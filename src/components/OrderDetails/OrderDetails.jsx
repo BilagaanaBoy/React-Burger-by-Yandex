@@ -1,16 +1,17 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styles from './OrderDetails.module.css';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import { CheckMarkIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
-function OrderDetails(props) {
-
+function OrderDetails() {
+  const order = useSelector((store) => store.mainReducer.order);
   return (
     <div className={styles.main}>
       <p className={clsx(styles.order,' text text_type_digits-large')}>
-        {props.order}
+        {order}
       </p>
       <p className="text text_type_main-medium mt-8">идентификатор заказа</p>
       <section className={'mt-15'}>
@@ -29,7 +30,3 @@ function OrderDetails(props) {
 }
 
 export default OrderDetails;
-
-OrderDetails.propTypes = {
-  order: PropTypes.string.isRequired,
-};

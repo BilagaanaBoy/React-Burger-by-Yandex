@@ -29,3 +29,24 @@
 .contentList::-webkit-scrollbar-thumb {
     background-color: #8585ad;
 }
+
+.noIngredient {
+    box-sizing: border-box;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+    background: #2f2f37;
+    min-height: 80px;
+    width: 536px;
+    height: 48px;
+  }
+  
+  .noBunsTop {
+    border-radius: 88px 88px 40px 40px;
+  }
+  
+  .noBunsBottom {
+    border-radius: 40px 40px 88px 88px;
+  }
