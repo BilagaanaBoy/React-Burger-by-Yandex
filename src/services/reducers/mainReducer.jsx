@@ -1,23 +1,15 @@
-import {
-    LOAD_INGREDIENTS,
-    ADD_INGREDIENT,
-    CHANGE_INGREDIENT,
-    DELETE_INGREDIENT,
-  
-    LOAD_DETAILS,
-    DELETE_DETAILS,
-  
-    ORDER_NUMBER,
-    ORDER_CLEAR,
-  } from '../actions';
-  
+  import { LOAD_INGREDIENTS, LOAD_DETAILS } from '../actions/loadAction';
+  import { ORDER_NUMBER, ORDER_CLEAR } from '../actions/orderAction';
+  import { ADD_INGREDIENT, ADD_INGREDIENT_BUN, ADD_INGREDIENT_BUN_LAST, DELETE_INGREDIENT, DELETE_DETAILS } from '../actions/addDeleteAction';
+  import { CHANGE_INGREDIENT } from '../actions/changeAction';
+
   const initialState = {
     ingredients: [],
     constructor: [],
     ingredient: {},
-    order: 0,
+    order: null,
   };
-  
+
   export const mainReducer = (state = initialState, action) => {
     switch (action.type) {
   
@@ -25,7 +17,7 @@ import {
         return {
           ...state,
           ingredients: action.data.map((element) => {
-            element['count'] = 0;
+            element.count = 0;
             return element;
           }),
         };
@@ -35,7 +27,35 @@ import {
           ...state,
           constructor: [
             ...state.constructor,
+            { ...action.item, uniqueId: action.id }
+          ],
+          ingredients: [...state.ingredients].map((item) =>
+            item._id === action.item._id
+              ? { ...item, count: item.count + action.qnt }
+              : item
+          ),
+        };
+
+      case ADD_INGREDIENT_BUN:
+        return {
+          ...state,
+          constructor: [
             { ...action.item, uniqueId: action.id },
+            ...state.constructor,
+          ],
+          ingredients: [...state.ingredients].map((item) =>
+            item._id === action.item._id
+              ? { ...item, count: item.count + action.qnt }
+              : item
+          ),
+        };
+
+      case ADD_INGREDIENT_BUN_LAST:
+        return {
+          ...state,
+          constructor: [
+            ...state.constructor,
+            { ...action.item, uniqueId: action.id, price: 0}
           ],
           ingredients: [...state.ingredients].map((item) =>
             item._id === action.item._id
@@ -78,8 +98,6 @@ import {
           order: 0,
         };
   
-  
-  
       case ORDER_NUMBER:
         return {
           ...state,
@@ -96,7 +114,7 @@ import {
           }),
         };
   
-  
+        
       default:
         return state;
     }

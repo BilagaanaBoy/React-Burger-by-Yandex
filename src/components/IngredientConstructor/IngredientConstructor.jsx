@@ -7,7 +7,7 @@ import styles from './IngredientConstructor.module.css';
 import PropTypes from 'prop-types';
 import { ingredientsType } from '../../utils/propTypesConst';
 
-import { DELETE_INGREDIENT } from '../../services/actions';
+import { DELETE_INGREDIENT } from '../../services/actions/addDeleteAction';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 

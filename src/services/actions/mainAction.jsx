@@ -1,15 +1,11 @@
-import { LOAD_INGREDIENTS, ORDER_NUMBER, ORDER_CLEAR } from './index';
+import { LOAD_INGREDIENTS } from './loadAction';
+import { ORDER_NUMBER, ORDER_CLEAR } from './orderAction';
+import checkResponse from '../../utils/checkResponse';
 
 import  baseUrl  from '../../utils/urlConst.js';
 const contentURL = new URL('ingredients', baseUrl );
 const orderURL = new URL('orders', baseUrl ); 
 
-function checkResponse(response) {
-  if (response.ok) {
-    return response.json();
-  }
-  return Promise.reject(`Ошибка ${response.status}`);
-}
 
 export function getData() {
   return function (dispatch) {
@@ -30,7 +26,7 @@ export function getData() {
 export function postOrder(data) {
   return async function (dispatch) {
     const orders = data.map((item) => item._id);
-    const answer = await fetch(orderURL, {
+    const res = await fetch(orderURL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -51,7 +47,7 @@ export function postOrder(data) {
       })
       .catch((error) => {
         console.log(error);
-      });
-    return answer;
+      }); 
+    return res;
   };
 }

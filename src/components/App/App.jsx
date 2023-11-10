@@ -5,7 +5,7 @@ import BurgerMain from '../BurgerMain/BurgerMain';
 import Modal from '../Modal/Modal';
 
 import { useDispatch } from 'react-redux';
-import { DELETE_DETAILS } from '../../services/actions';
+import { DELETE_DETAILS } from '../../services/actions/addDeleteAction';
 import { getData } from '../../services/actions/mainAction';
 
 //const URL = 'https://norma.nomoreparties.space/api/ingredients';

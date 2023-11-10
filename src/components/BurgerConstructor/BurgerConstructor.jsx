@@ -1,4 +1,5 @@
 import React from 'react';
+
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import styles from './BurgerConstructor.module.css';
@@ -11,11 +12,9 @@ import { CurrencyIcon, ConstructorElement, Button } from '@ya.praktikum/react-de
 
 import IngredientConstructor from '../IngredientConstructor/IngredientConstructor';
 
-import {
-  ADD_INGREDIENT,
-  CHANGE_INGREDIENT,
-  DELETE_INGREDIENT,
-} from '../../services/actions';
+import { ADD_INGREDIENT, ADD_INGREDIENT_BUN, ADD_INGREDIENT_BUN_LAST, DELETE_INGREDIENT } from '../../services/actions/addDeleteAction';
+import { CHANGE_INGREDIENT} from '../../services/actions/changeAction';
+
 import { postOrder } from '../../services/actions/mainAction';
 
 function BurgerConstructor(props) {
@@ -35,6 +34,7 @@ function BurgerConstructor(props) {
       const uniqueId = Date.now().toString(36) + Math.random().toString(36).substr(2);
       let qnt = 1;
       let selectedBun = data.find((el) => el.type === 'bun');
+
       if (item.type === 'bun'){
         qnt++;
         if (selectedBun) {
@@ -43,14 +43,24 @@ function BurgerConstructor(props) {
             item: selectedBun,
             qnt: qnt,
           });
-        }
-      }
-      dispatch({
-        type: ADD_INGREDIENT,
-        item: item,
-        id: uniqueId,
-        qnt: qnt,
-      });
+        } 
+
+        dispatch({
+          type: ADD_INGREDIENT_BUN,
+          item: item,
+          id: uniqueId,
+          qnt: qnt,
+        });
+
+      } else {
+        dispatch({
+          type: ADD_INGREDIENT,
+          item: item,
+          id: uniqueId,
+          qnt: qnt,
+        });
+      } 
+      
     }
   });
 
@@ -62,6 +72,14 @@ function BurgerConstructor(props) {
   }
 
   const getOrderModal = () => {
+    const uniqueIdLast = data.length;
+    dispatch({
+      type: ADD_INGREDIENT_BUN_LAST,
+      item: data[0],
+      id: uniqueIdLast,
+      qnt: 0,
+    });
+
     dispatch(postOrder(data));
     const modalContent = <OrderDetails />;
     const modalHeader = '';
@@ -129,7 +147,7 @@ function BurgerConstructor(props) {
           <CurrencyIcon type="primary" />
         </div>
         {bun && (
-        <Button type="primary" size="medium"  style={bun ? {} : { opacity: 0.5, cursor: 'default' }} onClick = { getOrderModal} >
+        <Button type="primary" size="medium"  style={bun ? {} : { opacity: 0.5, cursor: 'default' }} onClick = { getOrderModal } >
           Оформить заказ
         </Button>
         )}

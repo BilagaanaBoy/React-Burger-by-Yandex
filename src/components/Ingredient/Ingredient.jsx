@@ -10,7 +10,7 @@ import styles from './Ingredient.module.css';
 
 import IngredientDetails from '../IngredientDetails/IngredientDetails';
 import { ingredientsType } from '../../utils/propTypesConst';
-import { LOAD_DETAILS } from '../../services/actions/index';
+import { LOAD_DETAILS } from '../../services/actions/loadAction';
 
 function Ingredient(props) {
   const dispatch = useDispatch();

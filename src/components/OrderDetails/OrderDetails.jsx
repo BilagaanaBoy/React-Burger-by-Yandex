@@ -8,6 +8,7 @@ import { CheckMarkIcon } from '@ya.praktikum/react-developer-burger-ui-component
 
 function OrderDetails() {
   const order = useSelector((store) => store.mainReducer.order);
+
   return (
     <div className={styles.main}>
       <p className={clsx(styles.order,' text text_type_digits-large')}>
@@ -30,3 +31,4 @@ function OrderDetails() {
 }
 
 export default OrderDetails;
+

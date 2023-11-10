@@ -39,6 +39,10 @@ function BurgerIngredients(props) {
     element.scrollIntoView({ block: 'start',  behavior: 'smooth' });
   }
 
+  const bun = data.filter((item) => item.type === 'bun');
+  const sauce = data.filter((item) => item.type === 'sauce');
+  const main = data.filter((item) => item.type === 'main');
+
   return (
     <section className={styles.main}>
       <div className={styles.flex}>
@@ -57,7 +61,7 @@ function BurgerIngredients(props) {
           Булки
         </p>
         <div className={clsx(styles.sectionContent, ' mt-6 ml-4 mr-2')}>
-          {data.filter((item) => item.type === 'bun').map((item) => (
+          {bun.map((item) => (
             <Ingredient item={item} key={item._id} setModalOpen={props.setModalOpen} />
           ))}
         </div>
@@ -65,7 +69,7 @@ function BurgerIngredients(props) {
           Соусы
         </p>
         <div className={styles.sectionContent + ' mt-6 ml-4 mr-2'}>
-          {data.filter((item) => item.type === 'sauce').map((item) => (
+          {sauce.map((item) => (
             <Ingredient item={item} key={item._id} setModalOpen={props.setModalOpen} />
           ))}
         </div>
@@ -73,7 +77,7 @@ function BurgerIngredients(props) {
           Начинки
         </p>
         <div className={`${styles.sectionContent} mt-6 ml-4 mr-2`}>
-          {data.filter((item) => item.type === 'main').map((item) => (
+          {main.map((item) => (
             <Ingredient item={item} key={item._id} setModalOpen={props.setModalOpen} />
           ))}
         </div>
