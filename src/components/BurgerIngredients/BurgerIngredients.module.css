@@ -1,0 +1,35 @@
+.flex {
+    display: flex;
+    flex-direction: row;
+}
+
+.main {
+    max-width: 600px;
+    background: #131316;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: calc(100vh - 350px);
+}
+
+.content::-webkit-scrollbar {
+    width: 8px;
+    background-color: #2f2f37;
+}
+
+.content::-webkit-scrollbar-thumb {
+    background-color: #8585ad;
+}
+
+.sectionContent {
+    composes: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--offset-base-size) * 8) calc(var(--offset-base-size) * 6);
+}
+
+.sectionLabel {
+    text-align: left;
+}
