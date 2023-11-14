@@ -1,0 +1,26 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 520px;
+    text-align: center;
+}
+
+.textColor {
+    color: #F2F2F3;
+}
+
+.detailsList {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 56px;
+}
+
