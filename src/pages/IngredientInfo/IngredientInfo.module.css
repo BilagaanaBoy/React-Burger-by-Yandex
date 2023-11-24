@@ -1,0 +1,35 @@
+.bigCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 520px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.nutrients {
+    display: flex;
+    width: 520px;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.nutrient {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 56px;
+    color: #8585AD;
+}
+
+.bigCardName {
+    color: #F2F2F3;
+}
+
+.label {
+    margin-top: 120px;
+    color: #F2F2F3;
+}

@@ -1,0 +1,30 @@
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: auto;
+    transform: translate(-50%, -50%);
+    background: #1C1C21;
+
+    width: 720px;
+    min-height: 540px;
+
+    border: 1px solid rgba(76, 76, 255, 0.2);
+    box-sizing: border-box;
+    border-radius: 40px;
+}
+
+.closeButton {
+    cursor:pointer;
+    width: 18px;
+    height: 18px;
+    flex: 0 1 auto;
+}
+
+.header {
+    display: flex;
+    max-width: 100%;
+    align-items: center;
+    justify-content: space-between;
+
+}
