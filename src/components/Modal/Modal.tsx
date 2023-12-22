@@ -1,6 +1,5 @@
-import React, { FunctionComponent, ReactNode, } from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import styles from './Modal.module.css';
@@ -10,14 +9,13 @@ import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 const portalRoot = document.getElementById('portal-modals');
 
-
 interface IModalProps {
     children: ReactNode | '';
-    setModaClose: () => void;
+    onClose: () => void;
     header?: string;
-}
+  }
 
-const Modal: FunctionComponent<IModalProps> = (props) => {
+  const Modal: FunctionComponent<IModalProps> = (props) => {
 
     const handlerEsc = (e: KeyboardEvent) => {
         if (e.key === 'Escape') {
@@ -27,7 +25,7 @@ const Modal: FunctionComponent<IModalProps> = (props) => {
     }
 
     const closeModal = () => {
-        props.setModaClose();
+        props.onClose();
     }
 
     React.useEffect(() => {
@@ -39,7 +37,7 @@ const Modal: FunctionComponent<IModalProps> = (props) => {
 
     if (!portalRoot) {
         return null;
-    }
+      }
 
     return ReactDOM.createPortal(
         <div>
@@ -49,7 +47,7 @@ const Modal: FunctionComponent<IModalProps> = (props) => {
                     <h1 className={' text text_type_main-large'}>
                         {props.header}
                     </h1>
-                    <section className={styles.closeButton} onClick={props.setModaClose}>
+                    <section className={styles.closeButton} onClick={props.onClose}>
                         <CloseIcon type="secondary" />
                     </section>
                 </div>

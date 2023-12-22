@@ -1,0 +1,57 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 75%;
+
+}
+
+.nav {
+    width: 25%;
+    text-align: left;
+    margin-top: 76px;
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
+    max-width: 1160px;
+    margin: 44px auto;
+    /* height: calc(100vh - 88px - 40px); */
+    justify-content: flex-start;
+    align-items: top;
+}
+
+.footerLine {
+    display: flex;
+
+}
+
+.link {
+    display: block;
+    height: 64px;
+    color: #8585AD;
+    text-decoration: none;
+}
+
+.exitLink {
+    display: block;
+    height: 64px;
+    color: #8585AD;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.activeLink {
+    display: block;
+    height: 64px;
+    color: #F2F2F3;
+    text-decoration: none;
+}
+
+.text {
+    color: #8585AD;
+
+    opacity: 0.4;
+}

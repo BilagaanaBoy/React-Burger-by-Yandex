@@ -1,18 +1,18 @@
 import React, {FunctionComponent,ReactNode} from 'react';
-import { useSelector } from 'react-redux';
 import clsx from 'clsx';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 
 import styles from './BurgerIngredients.module.css';
 import Ingredient from '../Ingredient/Ingredient';
 import { TItem } from '../../utils/types';
-
+import { useSelector } from '../../utils/hooks';
 interface IBurgerIngredientsProps {
   setModalOpen: (modalChild: ReactNode, modalHeader: string) => void;
 }
 
+
 const BurgerIngredients: FunctionComponent<IBurgerIngredientsProps> = (props) => {
-  const data = useSelector((store: any) => store.mainReducer.ingredients);
+  const data = useSelector((store) => store.mainReducer.ingredients);
   const [section, setSection] = React.useState('bread');
 
   const ingredientsWindow = document.querySelector('#ingredients');
@@ -56,15 +56,12 @@ const BurgerIngredients: FunctionComponent<IBurgerIngredientsProps> = (props) =>
   return (
     <section className={styles.main}>
       <div className={styles.flex}>
-        {/* @ts-ignore */}
         <Tab value="bread" active={section === 'bread'} onClick={() => scrollToTab('bread')}>
           Булки
         </Tab>
-        {/* @ts-ignore */}
         <Tab value="sauce" active={section === 'sauce'} onClick={() => scrollToTab('sauce')}>
           Соусы
         </Tab>
-        {/* @ts-ignore */}
         <Tab value="topping" active={section === 'topping'} onClick={() => scrollToTab('topping')}>
           Начинки
         </Tab>

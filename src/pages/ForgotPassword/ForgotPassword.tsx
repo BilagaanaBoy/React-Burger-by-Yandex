@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { useSelector } from 'react-redux';
+
 import { Link, useHistory, Redirect } from 'react-router-dom';
 
 import { EmailInput,Button} from '@ya.praktikum/react-developer-burger-ui-components';
@@ -8,17 +8,19 @@ import styles from './ForgotPassword.module.css';
 import clsx from 'clsx';
 
 import { forgotPassword } from '../../utils/auth';
+import { useSelector } from '../../utils/hooks';
+
 
 function ForgotPassword() {
   const [form, setValue] = useState({ email: '' });
   const history = useHistory();
-  const auth = useSelector((store: any) => store.authReducer.isAuthorized);
+  const auth = useSelector((store) => store.authReducer.isAuthorized);
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
 
   const passwordReset = useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
+    (e:React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       forgotPassword(form.email)
         .then((data) => {
@@ -53,7 +55,7 @@ function ForgotPassword() {
             onChange={onChange}
           />
         </div>
-        <Button type="primary" size='large'></Button>
+        <Button type='primary' >Восстановить</Button>
       </form>
       <div className={styles.flex}>
         <p className={'text text_type_main-default text_color_inactive'}>

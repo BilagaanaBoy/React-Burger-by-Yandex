@@ -1,14 +1,11 @@
-import React, { useEffect, ReactNode } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, ReactElement, ReactNode } from 'react';
 import { Switch, Route, useHistory, useLocation } from 'react-router-dom';
-
-import styles from './App.module.css';
 
 import AppHeader  from '../AppHeader/AppHeader';
 import BurgerMain from '../BurgerMain/BurgerMain';
 import Modal from '../Modal/Modal';
 import NotFound404 from '../NotFound404/NotFound404';
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import  ProtectedRoute  from '../ProtectedRoute/ProtectedRoute';
 
 import { DELETE_DETAILS } from '../../services/actions';
 import { getData } from '../../services/actions/mainAction';
@@ -19,8 +16,13 @@ import ForgotPassword from '../../pages/ForgotPassword/ForgotPassword';
 import ResetPassword from '../../pages/ResetPassword/ResetPassword';
 import Profile from '../../pages/Profile/Profile';
 
-import Ingredientdetails from '../../pages/IngredientDetails/IngredientDetails';
+import IngredientDetails from '../IngredientDetails/IngredientDetails';
 import { Location } from 'history';
+import { useDispatch } from '../../utils/hooks';
+
+import Feed from '../../pages/Feed/Feed';
+import OrderComposition from '../OrderComposition/OrderComposition';
+import OrdersHistory from '../../pages/OrdersHistory/OrdersHistory';
 
 type TLocationState = {
   background: Location;
@@ -33,8 +35,8 @@ function App() {
   const [modalContent, setModalContent] = React.useState<ReactNode | ''>('');
 
   const history = useHistory();
-  const location = useLocation<TLocationState>();
-  const dispatch = useDispatch<any>();
+  let location = useLocation<TLocationState>();
+  const dispatch = useDispatch();
 
   let switchBack;
   if (history.action === 'PUSH' || history.action === 'REPLACE') {
@@ -66,16 +68,36 @@ function App() {
 
     return (
       <div>
+        
         <AppHeader />
         <Switch location={switchBack || location}>
           <Route path="/" exact>
             <BurgerMain setModalOpen={setModalOpen} />
             {modalStatus && (
-              <Modal setModaClose={setModaClose} header={modalHeader}>
+              <Modal onClose={setModaClose} header={modalHeader}>
                 {modalContent}
               </Modal>
             )}
           </Route>
+          <Route path="/feed" exact>
+          <Feed setModalOpen={setModalOpen} />
+          {modalStatus && (
+            <Modal onClose={setModaClose} header={modalHeader}>
+              {modalContent}
+            </Modal>
+          )}
+        </Route>
+        <ProtectedRoute path="/profile/orders" exact>
+          <OrdersHistory setModalOpen={setModalOpen} />
+          {modalStatus && (
+            <Modal onClose={setModaClose} header={modalHeader}>
+              {modalContent}
+            </Modal>
+          )}
+        </ProtectedRoute>
+        <ProtectedRoute path="/profile/orders/:id">
+          <OrderComposition />
+        </ProtectedRoute>
           <Route path="/login">
             <Login />
           </Route>
@@ -92,18 +114,36 @@ function App() {
             <Profile />
           </ProtectedRoute>
           <Route path="/ingredients/:id">
-            <Ingredientdetails/>
+            <IngredientDetails />
           </Route>
+          <Route path="/feed/:id">
+            <OrderComposition />
+           </Route>
           <Route path="/">
             <NotFound404 />
           </Route>
         </Switch>
+
         {switchBack && (
           <Route path="/ingredients/:id">
-            <Modal setModaClose={setIngredientModalClose}>
-              <Ingredientdetails />
+            <Modal onClose={setIngredientModalClose} header={' '}>
+              <IngredientDetails />
             </Modal>
           </Route>
+        )}
+        {switchBack && (
+          <Route path="/feed/:id">
+            <Modal onClose={setIngredientModalClose} header={' '}>
+              { <OrderComposition />}
+            </Modal>
+          </Route>
+        )}
+        {switchBack && (
+          <ProtectedRoute path="/profile/orders/:id">
+            <Modal onClose={setIngredientModalClose} header={' '}>
+              { <OrderComposition />}
+            </Modal>
+          </ProtectedRoute>
         )}
       </div>
     );

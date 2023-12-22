@@ -1,5 +1,4 @@
-import React, { useState, useEffect, MouseEvent, FormEvent, SyntheticEvent } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState, useEffect, MouseEvent, FormEvent, SyntheticEvent }  from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { Input, PasswordInput, EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -7,20 +6,22 @@ import { Input, PasswordInput, EmailInput, Button } from '@ya.praktikum/react-de
 import styles from './Profile.module.css';
 import clsx from 'clsx';
 
+import { useSelector, useDispatch } from '../../utils/hooks';
 import { updateUser, logout } from '../../services/actions/authActions';
+import { TUserData } from '../../utils/types';
 
-interface IUserForm {
-    name: string,
-    password: string,
-    email: string
-  }
 
 function Profile() {
-    const dispatch = useDispatch<any>();
+    const dispatch = useDispatch();
 
-    const user = useSelector((store:any) => store.authReducer.user);
+    const user = useSelector((store) => store.authReducer.user);
 
-    const [form, setValue] = useState<IUserForm>({name:'', password:'',email:''});
+    const [form, setValue]  = useState<TUserData>({
+        name: '',
+        password: '',
+        email: '',
+      });
+      
     const [changed, setChanged] = useState(false);
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,7 +43,7 @@ function Profile() {
     }
 
     function onExit(e: MouseEvent) {
-        dispatch(logout(form));
+        dispatch(logout());
     }
     
     useEffect(() => {
@@ -102,9 +103,13 @@ function Profile() {
                         onChange={onChange}
                     />
                 </div>
-                <div className={changed ? styles.activeButtons : styles.inactiveButtons}>           
-                    <Button type="primary" size='medium'></Button>
-                    <Button onClick={cancelClick} type="secondary"></Button>
+                <div className={changed ? styles.activeButtons : styles.inactiveButtons}>
+                    <Button type="primary" size="medium">
+                        Сохранить
+                    </Button>
+                    <Button onClick={cancelClick} type="secondary">
+                        Отмена
+                    </Button>
                 </div>
             </form>
         </div>

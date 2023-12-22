@@ -67,7 +67,7 @@ function ResetPassword() {
             onChange={onChange}
           />
         </div>
-        <Button type="primary"></Button>
+        <Button type="primary">Сохранить</Button>
       </form>
       <div className={styles.flex}>
         <p className={'text text_type_main-default text_color_inactive'}>

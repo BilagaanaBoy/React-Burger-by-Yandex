@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+
 import { Link, Redirect, useLocation } from 'react-router-dom';
 
 import { PasswordInput, EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -7,6 +7,8 @@ import { PasswordInput, EmailInput, Button } from '@ya.praktikum/react-developer
 import { login } from '../../services/actions/authActions';
 import styles from './Login.module.css';
 import clsx from 'clsx';
+
+import { useSelector, useDispatch } from '../../utils/hooks';
 
 type TLocationState = {
   background: Location;
@@ -16,8 +18,8 @@ type TLocationState = {
 function Login() {
   const [form, setValue] = useState({ email: '', password: '' });
 
-  const dispatch = useDispatch<any>();
-  const auth = useSelector((store: any) => store.authReducer.isAuthorized);
+  const dispatch = useDispatch();
+  const auth = useSelector((store) => store.authReducer.isAuthorized);
 
   const location = useLocation<TLocationState>();
 
@@ -57,9 +59,7 @@ function Login() {
             onChange={onChange}
           />
         </div>
-        
-        <Button type="primary" size='large'></Button>
-
+        <Button type="primary" >Войти</Button>
       </form>
       <div className={styles.flex}>
         <p className={'text text_type_main-default text_color_inactive'}>

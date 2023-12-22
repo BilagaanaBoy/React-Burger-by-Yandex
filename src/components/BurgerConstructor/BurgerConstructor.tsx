@@ -1,31 +1,35 @@
-import React, {FunctionComponent,ReactNode} from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React,{FunctionComponent,ReactNode} from 'react';
 import { useDrop } from 'react-dnd';
 import { useHistory } from 'react-router-dom';
 
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 
 import styles from './BurgerConstructor.module.css';
 import { CurrencyIcon, ConstructorElement, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 
 import OrderDetails from '../OrderDetails/OrderDetails';
 import IngredientConstructor from '../IngredientConstructor/IngredientConstructor';
-import { ADD_INGREDIENT, CHANGE_INGREDIENT, DELETE_INGREDIENT } from '../../services/actions';
-import { postOrder } from '../../services/actions/mainAction';
 import { TItem } from '../../utils/types';
+import { useSelector, useDispatch } from '../../utils/hooks';
+import {
+  ADD_INGREDIENT,
+  CHANGE_INGREDIENT,
+  DELETE_INGREDIENT,
+} from '../../services/actions';
+import { postOrder } from '../../services/actions/mainAction';
 
 interface IBurgerConstructorProps {
   setModalOpen: (modalChild: ReactNode, modalHeader: string) => void;
 }
 
-const BurgerConstructor: FunctionComponent<IBurgerConstructorProps> = (props) => {
-  const dispatch = useDispatch<any>();
+const  BurgerConstructor: FunctionComponent<IBurgerConstructorProps> = (props) => {
+  const dispatch = useDispatch();
   const history = useHistory();
 
-  const data = useSelector((store: any) => store.mainReducer.constructor);
-  const bun = data.find((item: TItem) => item.type === 'bun');
-  const auth = useSelector((store: any) => store.authReducer.isAuthorized);
+  const data = useSelector((store) => store.mainReducer.constructor);
+  const bun = data.find((item) => item.type === 'bun');
+
+  const auth = useSelector((store) => store.authReducer.isAuthorized);
 
   React.useEffect(() => {
     setTotal();
@@ -83,6 +87,7 @@ const BurgerConstructor: FunctionComponent<IBurgerConstructorProps> = (props) =>
     });
   }
   
+
   const inactiveButtonStyle = bun ? {} : { opacity: 0.5, cursor: 'default' };
 
   return (
@@ -150,7 +155,3 @@ const BurgerConstructor: FunctionComponent<IBurgerConstructorProps> = (props) =>
 }
 
 export default BurgerConstructor;
-
-// BurgerConstructor.propTypes = {
-//   setModalOpen: PropTypes.func.isRequired,
-// };

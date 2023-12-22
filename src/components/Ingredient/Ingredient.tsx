@@ -1,5 +1,5 @@
+
 import {FunctionComponent, ReactNode}  from 'react';
-import PropTypes from 'prop-types';
 import { useDrag } from 'react-dnd';
 import { useHistory, useLocation } from 'react-router-dom';
 
@@ -16,6 +16,7 @@ interface IIngredientProps {
 }
 
 const Ingredient: FunctionComponent<IIngredientProps> = (props) => {
+
   const history = useHistory();
   let location = useLocation();
 
@@ -34,7 +35,7 @@ const Ingredient: FunctionComponent<IIngredientProps> = (props) => {
 
   return (
     <div ref={dragRef} className={styles.content} onClick={getIngredientModal}>
-      <img src={props.item.image} alt={props.item.image} className={styles.image} />
+      <img src={props.item.image} alt="No image" className={styles.image} />
       <div className={clsx(styles.flex, ' mt-1 ')}>
         <p className="text text_type_digits-default mr-2 ">{props.item.price}</p>
         <CurrencyIcon type="primary" />

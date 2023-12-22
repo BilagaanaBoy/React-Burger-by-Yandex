@@ -1,5 +1,5 @@
+
 import { FunctionComponent,ReactNode } from 'react';
-import PropTypes from 'prop-types';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
@@ -31,7 +31,3 @@ const BurgerMain: FunctionComponent<IBurgerMainProps> = (props) => {
 }
 
 export default BurgerMain;
-
-BurgerMain.propTypes = {
-  setModalOpen: PropTypes.func.isRequired,
-};

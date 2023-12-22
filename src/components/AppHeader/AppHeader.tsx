@@ -6,6 +6,7 @@ import { Logo, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-dev
 import headerStyles from './AppHeader.module.css';
 import clsx from 'clsx';
 
+
 function AppHeader() {
 
   const [activeMenuItem, setactiveMenuItem] = React.useState('constructor');
@@ -14,7 +15,7 @@ function AppHeader() {
   
   React.useEffect(() => {
     switch (path) {
-      case '/ordering':
+      case '/feed':
         setactiveMenuItem('ordering');
         break;
       case '/profile':
@@ -40,7 +41,7 @@ function AppHeader() {
             <BurgerIcon type={activeMenuItem === 'constructor' ? 'primary' : 'secondary'} />
             <p className="ml-2">Конструктор</p>
           </Link>
-          <Link to="/"
+          <Link to="/feed"
             className={
               activeMenuItem === 'ordering'
                 ? clsx(headerStyles.menuItemActive, 'text text_type_main-default pt-4 pb-4 pl-5 pr-5  mr-2')
