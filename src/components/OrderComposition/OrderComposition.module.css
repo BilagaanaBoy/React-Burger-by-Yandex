@@ -1,0 +1,82 @@
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 620px;
+    margin: 0 auto;
+    text-align: center;
+    z-index: 15;
+}
+
+.number {
+    align-self: flex-start;
+    margin-top: -20px;
+}
+
+.burgerName {
+    align-self: flex-start;
+    text-align: left;
+}
+
+.burgerStatus {
+    align-self: flex-start;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow-y: scroll;
+    gap: calc(var(--offset-base-size) * 4);
+    max-height: 312px;
+}
+
+.list::-webkit-scrollbar {
+    width: 8px;
+    background-color: #2f2f37;
+}
+
+.list::-webkit-scrollbar-thumb {
+    background-color: #8585ad;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.image {
+    width: 64px;
+    height: 64px;
+    left: 0px;
+    top: 0px;
+    object-fit: cover;
+    background: #131316;
+    border-radius: 100px;
+    border: 2px solid #4C4CFF;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.ingredientName {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.price {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
