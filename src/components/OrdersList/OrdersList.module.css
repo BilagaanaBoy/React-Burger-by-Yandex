@@ -1,0 +1,66 @@
+.list {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    max-width: 600px;
+    flex-grow: 1;
+    text-align: left;
+}
+
+.list::-webkit-scrollbar {
+    width: 8px;
+    background-color: #2f2f37;
+}
+
+.list::-webkit-scrollbar-thumb {
+    background-color: #8585ad;
+}
+
+.columns {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: calc(var(--offset-base-size) * 9);
+}
+
+.done {
+    flex-grow: 1;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--offset-base-size) * 2);
+}
+
+.doneList {
+    flex-grow: 1;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--offset-base-size) * 2);
+    max-height: 320px;
+    flex-wrap: wrap;
+    max-width: 300px;
+    overflow: hidden;
+    overflow-x: scroll;
+}
+
+.doneList::-webkit-scrollbar {
+    height: 8px;
+    background-color: #2f2f37;
+}
+
+.doneList::-webkit-scrollbar-thumb {
+    background-color: #8585ad;
+}
+
+.work {
+    flex-grow: 1;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--offset-base-size) * 2);
+}
+
+.doneNumbers {
+    display: block;
+}
