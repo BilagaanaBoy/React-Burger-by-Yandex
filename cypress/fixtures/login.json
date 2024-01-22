@@ -1,0 +1,6 @@
+{
+    "success": true,
+    "accessToken": "Bearer token key",
+    "refreshToken": "fake token",
+    "user": { "email": "test@gmail.com", "name": "test" }
+  }

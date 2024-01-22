@@ -1,0 +1,17 @@
+.label {
+    text-align: left;
+}
+
+.main {
+    max-width: 1240px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.feed {
+    width: 50%;
+    max-width: 600px;
+}
